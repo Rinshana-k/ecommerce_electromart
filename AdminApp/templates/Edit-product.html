@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{% extends 'dashboard.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit product here....</h4>
+
+            <form class="forms-sample" method="post" action="{% url 'update_product' p_id=product.id %}"
+                  enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="exampleSelectGender">Category</label>
+
+                    <select class="form-control" id="exampleSelectGender" name="c_name">
+                        <option>{{product.CategoryName}}</option>
+                        {% for i in categories %}
+                        <option>{{i.Category_name}}</option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputName1">Product Name </label>
+                    <input type="text" class="form-control" id="exampleInputName1" placeholder="p_name" name="p_name"
+                           value="{{product.ProductName}}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName2">Price </label>
+                    <input type="text" class="form-control" id="exampleInputName2" placeholder="price" name="price"
+                           value="{{product.Price}}">
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea1">Short Description</label>
+                    <textarea class="form-control" id="exampleTextarea1" rows="4" name="s_description">{{product.Short_Description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleTextarea2">Detailed Description</label>
+                    <textarea class="form-control" id="exampleTextarea2" rows="4" name="d_description">{{product.Detailed_Description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName3">Brand </label>
+                    <input type="text" class="form-control" id="exampleInputName3" placeholder="Brand" name="brand"
+                           value="{{product.Brand}}">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label>Upload Product image</label>
+                    <div class="input-group col-xs-12">
+                        <img src="{{product.Product_Image1.url}}" height="100px" width="100px">
+                        <input type="file" class="form-control " placeholder="Upload Image" name="p_img1">
+
+                        <img src="{{product.Product_Image2.url}}" height="100px" width="100px">
+                        <input type="file" class="form-control " placeholder="Upload Image" name="p_img2">
+
+                        <img src="{{product.Product_Image3.url}}" height="100px" width="100px">
+                        <input type="file" class="form-control " placeholder="Upload Image" name="p_img3">
+
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mr-2 mt-3">update</button>
+                <button class="btn btn-dark mt-3">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+{% endblock %}
+</html>
