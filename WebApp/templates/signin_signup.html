@@ -14,7 +14,7 @@
             <div class="form-wrapper align-items-center">
 
                 <div class="form sign-up">
-                    <form method="post" action="{% url 'save_Registration'%}">
+                    <form method="post" name="signupform" action="{% url 'save_Registration'%}" onsubmit="return signup_validation()">
                         {% csrf_token %}
                         <div class="input-group">
                             <i class='bx bxs-user'></i>
@@ -483,6 +483,30 @@ toggle = () => {
 setTimeout(() => {
 	container.classList.add('sign-in')
 }, 200)
+</script>
+<script>
+    function signup_validation(){
+      uname=document.signupform.u_name.value;
+      email=document.signupform.email.value;
+      pswd1=document.signupform.pswd.value;
+      pswd2=document.signupform.c_pswd.value;
+
+      if(uname==""){
+         alert("please fill the username....")
+      }
+      if(email==""){
+         alert("please fill the email....")
+      }
+       if(pswd1==""){
+         alert("please enter the password....")
+      }
+       if(pswd2==""){
+         alert("please enter the confirm password...")
+      }
+      if(pswd1 !=pswd2){
+         alert("Password does not match.")
+      }
+    }
 </script>
 </body>
 </html>

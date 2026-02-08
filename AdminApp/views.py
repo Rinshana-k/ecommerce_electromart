@@ -7,6 +7,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
 from WebApp.models import ContactDb
+from django.contrib import messages
 # Create your views here.
 
 def dashboard(request):
@@ -28,6 +29,7 @@ def save_categories(request):
         C_img=request.FILES['c_img']
         obj=CategoryDb(Category_name=C_name,Description=description,Category_img=C_img)
         obj.save()
+        messages.success(request,"Category saved successfully....")
         return redirect(add_categories)
 
 def edit_category(request,c_id):
@@ -69,6 +71,7 @@ def save_products(request):
         obj=ProductDb(CategoryName=category_name,ProductName=product_name,Price=price,Short_Description=short_description,Detailed_Description=detailed_description,
                       Brand=brand,Product_Image1=p_img1,Product_Image2=p_img2,Product_Image3=p_img3)
         obj.save()
+
         return redirect(add_products)
 
 def display_products(request):

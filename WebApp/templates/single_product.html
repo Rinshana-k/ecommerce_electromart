@@ -464,13 +464,13 @@
                         {% if request.session.UserName %}
                         <form>
                             <div class="mb-3">
-                                <input type="number" class="form-control" value="1" min="1">
+                                <input type="number" class="form-control" value="1" min="1" id="quantity">
+                            </div>
+                            <div class="mb-3 ">
+                                <input type="hidden" class="form-control " value="{{product.Price}}" id="price">
                             </div>
                             <div class="mb-3">
-                                <input type="text" class="form-control" value="{{product.Price}}">
-                            </div>
-                            <div class="mb-3">
-                                <input type="text" class="form-control" placeholder="Total Price">
+                                <input type="text" class="form-control" placeholder="Total Price" id="total_price">
                             </div>
                             <button
                                     class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
@@ -967,6 +967,16 @@
 
 <!-- Template Javascript -->
 <script src="{% static 'web/js/main.js' %}"></script>
+<script>
+    $(document).ready(function(){
+       $("#quantity").change(function(){
+           qty=document.getElementById("quantity").value;
+           price=document.getElementById("price").value;
+           total=qty*price
+           document.getElementById("total_price").value=total;
+       })
+    })
+</script>
 </body>
 
 </html>
