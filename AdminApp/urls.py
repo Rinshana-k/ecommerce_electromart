@@ -17,12 +17,14 @@ urlpatterns=[
     path('update_product/<int:p_id>/',views.update_product,name="update_product"),
     path('delete_product/<int:p_id>/',views.delete_product,name="delete_product"),
 
-    path('admin_login_page/',views.admin_login_page,name="admin_login_page"),
+    path('',views.admin_login_page,name="admin_login_page"),
     path('admin_login/',views.admin_login,name="admin_login"),
     path('admin_logout/',views.admin_logout,name="admin_logout"),
 
     path('contact_details/',views.contact_details,name="contact_details"),
     path('delete_contact_details/<int:c_id>/',views.delete_contact_details,name="delete_contact_details"),
+    path('order_details/',views.order_details,name="order_details"),
+    path('cart_details/',views.cart_details,name="cart_details"),
 
 
 ]

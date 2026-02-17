@@ -6,7 +6,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login
-from WebApp.models import ContactDb
+from WebApp.models import *
 from django.contrib import messages
 # Create your views here.
 
@@ -71,7 +71,7 @@ def save_products(request):
         obj=ProductDb(CategoryName=category_name,ProductName=product_name,Price=price,Short_Description=short_description,Detailed_Description=detailed_description,
                       Brand=brand,Product_Image1=p_img1,Product_Image2=p_img2,Product_Image3=p_img3)
         obj.save()
-
+        messages.success(request,"product saved successfully....")
         return redirect(add_products)
 
 def display_products(request):
@@ -134,10 +134,14 @@ def admin_login(request):
                 login(request,data)
                 request.session['username']=uname
                 request.session['password']=pswd
+                messages.success(request,"Welcome to ElectroMart Admin dashboard ")
                 return redirect(dashboard)
             else:
+                messages.error(request,"Invalid Password")
                 return redirect(admin_login_page)
+
         else:
+            messages.warning(request,"Username Doesnot exist...")
             return redirect(admin_login_page)
 
 def admin_logout(request):
@@ -153,3 +157,11 @@ def delete_contact_details(request,c_id):
     data=ContactDb.objects.get(id=c_id)
     data.delete()
     return redirect(contact_details)
+
+def order_details(request):
+    orders=CheckoutDb.objects.all()
+    return render(request,"order_details.html",{'orders':orders})
+
+def cart_details(request):
+    cart_detail=CartDb.objects.all()
+    return render(request,"cart_details.html",{'cart_detail':cart_detail})

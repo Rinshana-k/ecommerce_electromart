@@ -23,8 +23,8 @@ import WebApp.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('AdminApp/',include(AdminApp.urls)),
-    path('',include(WebApp.urls))
+    path('',include(AdminApp.urls)),
+    path('Electromart/',include(WebApp.urls))
 ]
 
 urlpatterns+=staticfiles_urlpatterns()

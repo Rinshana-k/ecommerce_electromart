@@ -1,7 +1,7 @@
 from django.urls import path
 from WebApp import views
 urlpatterns=[
-    path('',views.Home_page,name="Home"),
+    path('Home/',views.Home_page,name="Home"),
     path('About/',views.About_page,name="About"),
     path('Contact/',views.Contact_page,name="Contact"),
     path('All_products/',views.All_products,name="All_products"),
@@ -15,6 +15,10 @@ urlpatterns=[
     path('help/',views.help,name="help"),
     path('support/',views.support,name="support"),
     path('cart/',views.cart,name="cart"),
+    path('save_to_cart/',views.save_to_cart,name="save_to_cart"),
+    path('cart_delete/<int:id>/',views.cart_delete,name="cart_delete"),
     path('checkout/',views.checkout,name="checkout"),
+    path('save_to_checkout/',views.save_to_checkout,name="save_to_checkout"),
+    path('payments/',views.payments,name="payments"),
 
 ]

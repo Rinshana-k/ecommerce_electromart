@@ -90,6 +90,30 @@
 	<script src="{% static 'loginpage/vendor/countdowntime/countdowntime.js' %}"></script>
 <!--===============================================================================================-->
 	<script src="{% static 'loginpage/js/main.js' %}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    {% if messages %}
+       {% for i in messages %}
+           {% if i.tags == 'success' %}
+               <script>
+                   swal('{{ i }})', '' , 'success')
+               </script>
 
+           {% elif i.tags == 'error' %}
+               <script>
+                   swal('{{ i }}', '' , 'error')
+               </script>
+
+           {% elif i.tags == 'warning' %}
+               <script>
+                   swal('{{ i }}', '' , 'warning')
+               </script>
+
+           {% elif i.tags == 'info' %}
+               <script>
+                   swal('{{ i }}', '' , 'info')
+               </script>
+           {% endif %}
+       {% endfor %}
+    {% endif %}
 </body>
 </html>
