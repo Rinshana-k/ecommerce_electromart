@@ -194,8 +194,9 @@ def payments(request):
             'amount':amount,
             'currency':order_currency,
         })
+
     return render(request,"payments.html",{
         'pay_str':pay_str,
         'amount':amount,
-    })
 
+    })
