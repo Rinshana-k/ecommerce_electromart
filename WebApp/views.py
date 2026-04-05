@@ -1,6 +1,5 @@
 
 from django.shortcuts import render,redirect
-from unicodedata import category
 from django.contrib import messages
 from AdminApp.models import CategoryDb,ProductDb
 from WebApp.models import *
@@ -9,7 +8,9 @@ import razorpay
 
 def Home_page(request):
     categories=CategoryDb.objects.all()
-    return render(request,"Home.html",{'categories':categories})
+    products = ProductDb.objects.all()
+    return render(request,"Home.html",{'categories':categories,
+                                       'products':products})
 
 def About_page(request):
     categories=CategoryDb.objects.all()
